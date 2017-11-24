@@ -85,6 +85,34 @@ class ControllerPeluche {
         $controller = 'peluche';
         require_once File::build_path(array('view', 'view.php'));
     }
+
+    public static function update() {
+        $view = 'update';
+        $pagetitle = 'Modifiez votre peluche';
+        $controller = 'peluche';
+        //require_once File::build_path(array('view', 'voiture','create.php'));
+        require File::build_path(array('view', 'view.php'));
+    }
+
+    public static function updated() {
+
+        $lastname = $_GET['lastname'];
+        $nom = $_GET['nom'];
+        $couleur = $_GET['couleur'];
+        $prix = $_GET['prix'];
+        $description = $_GET['description'];
+        $taille = $_GET['taille'];
+
+        $peluche = ModelPeluche::updateByNom($nom, $couleur, $prix, $description, $taille, $lastname);
+
+        $tab_p = ModelPeluche::getAllPeluches();
+
+        $view = 'updated';
+        $pagetitle = 'updated';
+        $controller = 'peluche';
+        //require_once File::build_path(array('view', 'voiture','create.php'));
+        require File::build_path(array('view', 'view.php'));
+    }
 }
 
 ?>
